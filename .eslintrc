@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "react": {
+      "version": "16.0"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "semi": [2, "always"],
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
+    "comma-dangle" : [1, "always-multiline"],
+    "generator-star-spacing": 1,
+    "babel/new-cap": 1,
+    "object-shorthand": 1,
+    "arrow-parens": 0,
+    "no-await-in-loop": 1,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2,
+    "jsx-quotes": [2, "prefer-single"],
+    "react/jsx-boolean-value": [2, "always"],
+    "react/jsx-closing-bracket-location": [2, { "selfClosing": "after-props", "nonEmpty": "after-props" }],
+    "react/jsx-curly-spacing": [2, "never", {"allowMultiline": false}],
+    "react/jsx-max-props-per-line": [2, { "maximum": 3 }]
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ]
+}
