@@ -1,14 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-var publicUrl = '/public';
+var publicUrl = '';
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: ['@babel/polyfill', path.join(__dirname, 'src', 'index.js')],
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'index.bundle.js',
   },
+  node: {
+    fs: 'empty',
+  },
+  devtool: 'source-map',
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
@@ -39,7 +43,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg|json)$/,
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         use: [
           {
             loader: 'file-loader', 
