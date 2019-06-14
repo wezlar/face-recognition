@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import FaceRecognition from './components/faceRecognition/FaceRecognition';
+import Camera from './components/camera/Camera';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <p>
           Test app
         </p>
-        <FaceRecognition />
+        <Camera />
       </header>
     </div>
   );
