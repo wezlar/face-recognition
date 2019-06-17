@@ -2,7 +2,9 @@ import * as faceapi from 'face-api.js';
 
 // Load models and weights
 export async function loadModels() {
+  console.log(process.env.PUBLIC_URL);
   const MODEL_URL = process.env.PUBLIC_URL + '/models';
+  console.log({ MODEL_URL });
   await faceapi.loadTinyFaceDetectorModel(MODEL_URL);
   await faceapi.loadFaceLandmarkTinyModel(MODEL_URL);
   await faceapi.loadFaceRecognitionModel(MODEL_URL);
