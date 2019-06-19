@@ -7,22 +7,19 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const PUBLIC_URL = '';
 const ENV = process.env.production ? JSON.stringify('production') : JSON.stringify('development');
 
-const GLOBALS = {
-  DEAN: 'dean',
-  'process.env': {
-    NODE_ENV: ENV,
-    PUBLIC_URL,
-  },
-};
-
-console.log('path: ' + path.join(__dirname, 'assets'));
+console.log('path: ' + path.join(__dirname, 'public'));
 
 module.exports = {
   entry: ['@babel/polyfill', path.join(__dirname, 'src', 'index.js')],
   output: {
-    path: path.join(__dirname, 'build'),
-    publicPath: path.join(__dirname, 'assets'),
+    path: path.join(__dirname, 'dist'),
     filename: 'index.bundle.js',
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'public/'),
+    port: 8080,
+    publicPath: 'http://localhost:8080/',
+    hotOnly: true,
   },
   node: {
     fs: 'empty',
@@ -31,9 +28,6 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'src'),
   },
   module: {
     rules: [
@@ -75,10 +69,7 @@ module.exports = {
       'process.env.PUBLIC_URL': JSON.stringify(PUBLIC_URL),
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'assets/index.html'),
-    }),
-    new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-      PUBLIC_URL,
+      template: path.join(__dirname, 'public/index.html'),
     }),
   ],
 };
