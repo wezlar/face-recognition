@@ -1,7 +1,7 @@
 import React from 'react';
+import { Route, Router } from 'react-router-dom';
 import './App.css';
-
-import Camera from './components/camera/Camera';
+import { createBrowserHistory } from 'history';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <p>
           Test app
         </p>
-        <Camera />
+        {/* <Camera /> */}
       </header>
     </div>
   );

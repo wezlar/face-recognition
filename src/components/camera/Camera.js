@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { loadModels, getFullFaceDescription } from '../../api/face';
 
 class Camera extends Component {
@@ -51,4 +52,4 @@ class Camera extends Component {
   }
 }
 
-export default Camera;
+export default withRouter(Camera);
