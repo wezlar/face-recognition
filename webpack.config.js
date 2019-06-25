@@ -53,14 +53,13 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: [
-          {
-            loader: 'file-loader', 
+        use: [{
+          loader: 'url-loader',
+          options: { 
+            limit: 8000, // Convert images < 8kb to base64 strings
+            name: 'img/[hash]-[name].[ext]',
           },
-          {
-            loader: 'raw-loader',
-          },
-        ],
+        }],
       },
     ],
   },
