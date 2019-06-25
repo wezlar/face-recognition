@@ -22,7 +22,7 @@ const routing = (
           <Link to='/photo'>Photo</Link>
         </li>
       </ul>
-      <Route exact path='/' component={App} />
+      <Route exact={true} path='/' component={App} />
       <Route path='/camera' component={Camera} />
       <Route path='/photo' component={ImageInput} />
     </div>

@@ -26,7 +26,7 @@ class Camera extends Component {
 
   handleImage = async (image = '') => {
     await getFullFaceDescription(image).then(fullDesc => {
-      console.log(fullDesc);
+      console.log({ fullDesc });
       this.setState({ fullDesc });
     });
   };
