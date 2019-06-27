@@ -23,10 +23,12 @@ class ImageInput extends Component {
 
   handleImage = async (image = this.state.imageURL) => {
     await getFullFaceDescription(image).then(fullDesc => {
+      console.log({fullDesc})
       if (!!fullDesc) {
         this.setState({
           fullDesc,
           detections: fullDesc.map(fd => fd.detection),
+          descriptors: fullDesc.map(fd => fd.descriptor),
         });
       }
     });
@@ -45,9 +47,7 @@ class ImageInput extends Component {
     this.setState({ ...INIT_STATE });
   };
 
-  render() {
-    const { imageURL, detections } = this.state;
-
+  drawBox (detections) {
     let drawBox = null;
 
     if (!!detections) {
@@ -73,6 +73,23 @@ class ImageInput extends Component {
       });
     }
 
+    return drawBox;
+  };
+
+  drawDescriptorsInput (descriptors) {
+    if (!descriptors) {
+      return null;
+    }
+
+    return (<input
+      id='myFileDescriptors'
+      type='text'
+      defaultValue={descriptors.join(', ')} />);
+  };
+
+  render() {
+    const { imageURL, detections, descriptors } = this.state;
+
     return (
       <div>
         <input
@@ -80,11 +97,12 @@ class ImageInput extends Component {
           type='file'
           onChange={this.handleFileChange}
           accept='.jpg, .jpeg, .png' />
+        {this.drawDescriptorsInput(descriptors)}
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute' }}>
             <img src={imageURL} alt='imageURL' />
           </div>
-          {!!drawBox ? drawBox : null}
+          {this.drawBox(detections)}
         </div>
       </div>
     );
