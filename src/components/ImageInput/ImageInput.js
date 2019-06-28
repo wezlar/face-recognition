@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
 import { loadModels, getFullFaceDescription, createMatcher } from '../../api/face';
-
-// Import image to test API
-const testImg = require('../../img/rio.jpg');
-
-// import face profile
-const JSON_PROFILE = require('../../descriptors/bnk48.json');
-
-// Initial State
-const INIT_STATE = {
-  imageURL: testImg,
-  fullDesc: null,
-  detections: null,
-  descriptors: null,
-  match: null,
-};
+import { JSON_PROFILE, INIT_STATE } from '../../constants';
+import DrawBox from '../DrawBox/DrawBox';
 
 class ImageInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...INIT_STATE, faceMatcher: null };
+    this.state = { ...INIT_STATE };
   }
 
   componentWillMount = async () => {
@@ -61,67 +48,12 @@ class ImageInput extends Component {
     this.setState({ ...INIT_STATE });
   };
 
-  drawNameBox = ({i = 0, _W = 100, _H = 100}) => {
-    const { match } = this.state;
-
-    if (!match || !match[i]) {
-      return null;
-    };
-
-    return (
-      <p
-        style={{
-          backgroundColor: 'blue',
-          border: 'solid',
-          borderColor: 'blue',
-          width: _W,
-          marginTop: 0,
-          color: '#fff',
-          transform: `translate(-3px, ${_H}px)`,
-        }}>
-        {match[i]._label}
-      </p>
-    );
-  }
-
-  drawBox = () => {
-    const { detections } = this.state;
-    let drawBox = null;
-
-    if (!!detections) {
-      drawBox = detections.map((detection, i) => {
-        let _H = detection.box.height;
-        let _W = detection.box.width;
-        let _X = detection.box._x;
-        let _Y = detection.box._y;
-
-        return (
-          <div key={i}>
-            <div
-              style={{
-                position: 'absolute',
-                border: 'solid',
-                borderColor: 'blue',
-                height: _H,
-                width: _W,
-                transform: `translate(${_X}px, ${_Y}px)`,
-              }}>
-                {this.drawNameBox({i,_W, _H})}
-              </div>
-          </div>
-        );
-      });
-    }
-
-    return drawBox;
-  };
-
   drawDescriptorsInput = () => {
     const { descriptors } = this.state;
     if (!descriptors) {
       return null;
     }
-
+  
     return (<input
       id='myFileDescriptors'
       type='text'
@@ -129,7 +61,7 @@ class ImageInput extends Component {
   };
 
   render() {
-    const { imageURL, detections, descriptors } = this.state;
+    const { imageURL, detections, descriptors, match } = this.state;
 
     return (
       <div>
@@ -143,7 +75,7 @@ class ImageInput extends Component {
           <div style={{ position: 'absolute' }}>
             <img src={imageURL} alt='imageURL' />
           </div>
-          {this.drawBox()}
+          <DrawBox detections={detections} match={match} />
         </div>
       </div>
     );
