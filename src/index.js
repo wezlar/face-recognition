@@ -6,26 +6,33 @@ import App from './App';
 import Camera from '../src/components/Camera/Camera';
 import VideoInput from '../src/components/VideoInput/VideoInput';
 import ImageInput from '../src/components/ImageInput/ImageInput';
+import Navigation from '../src/components/Navigation/Navigation';
 
 import * as serviceWorker from './serviceWorker';
+
+const links = [
+  {
+    label: 'Home',
+    url: '/',
+  },
+  {
+    label: 'Camera',
+    url: '/camera',
+  },
+  {
+    label: 'Video Input',
+    url: '/video',
+  },
+  {
+    label: 'Image',
+    url: '/image',
+  },
+];
 
 const routing = (
   <Router>
     <div>
-    <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/camera'>Camera</Link>
-        </li>
-        <li>
-          <Link to='/video'>Video Input</Link>
-        </li>
-        <li>
-          <Link to='/image'>Image</Link>
-        </li>
-      </ul>
+      <Navigation links={links} />
       <Route exact={true} path='/' component={App} />
       <Route path='/video' component={VideoInput} />
       <Route path='/image' component={ImageInput} />
