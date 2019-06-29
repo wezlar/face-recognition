@@ -10,7 +10,7 @@ export async function loadModels() {
 
 export async function getFullFaceDescription(blob, inputSize = 512) {
   // tiny_face_detector options
-  let scoreThreshold = 0.5;
+  let scoreThreshold = 0.6;
   const OPTION = new faceapi.TinyFaceDetectorOptions({
     inputSize,
     scoreThreshold,
@@ -29,7 +29,7 @@ export async function getFullFaceDescription(blob, inputSize = 512) {
   return fullDesc;
 }
 
-const maxDescriptorDistance = 0.5;
+const maxDescriptorDistance = 0.6;
 export async function createMatcher(faceProfile) {
   // Create labeled descriptors of member from profile
   let members = Object.keys(faceProfile);
