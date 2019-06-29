@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { loadModels, getFullFaceDescription, createMatcher } from '../../api/face';
-import { JSON_PROFILE, INIT_STATE } from '../../constants';
 import DrawBox from '../DrawBox/DrawBox';
+
+import { JSON_PROFILE, INIT_STATE } from '../../constants';
 
 class ImageInput extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class ImageInput extends Component {
           type='file'
           onChange={this.handleFileChange}
           accept='.jpg, .jpeg, .png' />
-        {this.drawDescriptorsInput(descriptors)}
+        {this.drawDescriptorsInput()}
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute' }}>
             <img src={imageURL} alt='imageURL' />
