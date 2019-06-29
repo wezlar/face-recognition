@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
 import { loadModels, getFullFaceDescription, createMatcher } from '../../api/face';
-import { JSON_PROFILE, INIT_STATE } from '../../constants';
+import DrawBox from '../DrawBox/DrawBox';
 
-const WIDTH = 420;
-const HEIGHT = 420;
+import { JSON_PROFILE, INIT_STATE, VIDEO_SIZE } from '../../constants';
+
+
 const inputSize = 160;
 
 class VideoInput extends Component {
@@ -58,28 +59,29 @@ class VideoInput extends Component {
         if (!!fullDesc) {
           this.setState({
             detections: fullDesc.map(fd => fd.detection),
-            descriptors: fullDesc.map(fd => fd.descriptors),
+            descriptors: fullDesc.map(fd => fd.descriptor),
           });
         }
       });
 
       if (!!this.state.descriptors && !!this.state.faceMatcher) {
-        let match = await this.state.descriptors.map(descriptor => 
-            this.state.faceMatcher.findBestMatch(descriptor)
-          );
+        let match = await this.state.descriptors.map(descriptor => {
+          return this.state.faceMatcher.findBestMatch(descriptor);
+        });
         this.setState({ match });
       }
     }
   };
 
   render () {
-    const { detections, match, facingMode } = this.state;
+    const { detections, match = {}, facingMode } = this.state;
     let videoConstraints = null;
     let camera = '';
+    
     if (!!facingMode) {
       videoConstraints = {
-        width: WIDTH,
-        height: HEIGHT,
+        width: VIDEO_SIZE.WIDTH,
+        height: VIDEO_SIZE.HEIGHT,
         facingMode,
       };
       if (facingMode === 'user') {
@@ -88,5 +90,39 @@ class VideoInput extends Component {
         camera = 'Back';
       }
     }
+
+    return (
+      <div
+        className='camera'
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }} >
+        <p>Camera: {camera}</p>
+        <div
+          style={{
+            width: VIDEO_SIZE.WIDTH,
+            height: VIDEO_SIZE.HEIGHT,
+          }} >
+          <div style={{ position: 'relative', width: VIDEO_SIZE.WIDTH }}>
+            {!!videoConstraints ? (
+              <div style={{ position: 'absolute' }}>
+                <Webcam
+                  audio={false}
+                  width={VIDEO_SIZE.WIDTH}
+                  height={VIDEO_SIZE.HEIGHT}
+                  ref={this.webcam}
+                  screenshotFormat='image/jpeg'
+                  videoConstraints={videoConstraints} />
+              </div>
+            ) : null}
+            <DrawBox key={1} detections={detections} match={match} />
+          </div>
+        </div>
+      </div>
+    );
   };
 };
+
+export default VideoInput;

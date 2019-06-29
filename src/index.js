@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Camera from '../src/components/Camera/Camera';
+import VideoInput from '../src/components/VideoInput/VideoInput';
 import ImageInput from '../src/components/ImageInput/ImageInput';
 
 import * as serviceWorker from './serviceWorker';
@@ -19,12 +20,15 @@ const routing = (
           <Link to='/camera'>Camera</Link>
         </li>
         <li>
-          <Link to='/photo'>Photo</Link>
+          <Link to='/video'>Video Input</Link>
+        </li>
+        <li>
+          <Link to='/image'>Image</Link>
         </li>
       </ul>
       <Route exact={true} path='/' component={App} />
-      <Route path='/camera' component={Camera} />
-      <Route path='/photo' component={ImageInput} />
+      <Route path='/video' component={VideoInput} />
+      <Route path='/image' component={ImageInput} />
     </div>
   </Router>
 );
