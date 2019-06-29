@@ -29,6 +29,7 @@ export const DrawBox = (props = {}) => {
               transform: `translate(${_X}px, ${_Y}px)`,
             }}>
               <DrawNameBox 
+                key={i}
                 match={match} 
                 index={i} 
                 width={_W} 
@@ -44,11 +45,10 @@ export const DrawBox = (props = {}) => {
 
 DrawBox.propTypes = {
   detections: PropTypes.array,
-  children: PropTypes.oneOfType([
+  match: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
-  match: PropTypes.array,
 };
 
 export default DrawBox;
