@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const linkStyle = {
   backgroundColor: 'blue',
@@ -14,12 +15,12 @@ export const NavigationLink = (props = {}) => {
   
   return (
     <li>
-      <a style={{
+      <Link style={{
         ...linkStyle,
       }}
       href={url}>
         {label}
-      </a>
+      </Link>
     </li>
   );
 };
