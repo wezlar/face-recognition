@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Navigation Test snapshot 1`] = `
+<div
+  class="css-1bphxuy-Navigation"
+>
+  <ul>
+    <li>
+      <a
+        class="css-1eswy7-NavigationLink"
+        href="/"
+      >
+        Home Page
+      </a>
+    </li>
+    <li>
+      <a
+        class="css-1eswy7-NavigationLink"
+        href="/test-page-1"
+      >
+        Test Page 1
+      </a>
+    </li>
+    <li>
+      <a
+        class="css-1eswy7-NavigationLink"
+        href="/test-page-2"
+      >
+        Test Page 2
+      </a>
+    </li>
+  </ul>
+</div>
+`;
