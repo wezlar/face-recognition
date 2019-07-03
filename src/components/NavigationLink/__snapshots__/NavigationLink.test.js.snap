@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test NavigationLink Test snapshot 1`] = `
+<li>
+  <a
+    class="css-1eswy7-NavigationLink"
+    href="/home"
+  >
+    Test label
+  </a>
+</li>
+`;
