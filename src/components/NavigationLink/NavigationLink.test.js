@@ -5,7 +5,6 @@ import {
   cleanup,
 } from '@testing-library/react';
 // this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect';
 import renderWithRouter from '../../testUtils/renderWithRouter';
 import NavigationLink from './NavigationLink';
 
@@ -14,10 +13,10 @@ afterEach(cleanup);
 describe(`Test NavigationLink`, () => {
   test(`Test snapshot`, () => {
     // Arrange
-    const { container, getByText } = renderWithRouter(
+    const { container, debug } = renderWithRouter(
       <NavigationLink label='Test label' url={'/home'} />,
     );
-  
+
     // snapshots work great with regular DOM nodes!
     expect(container.firstChild).toMatchSnapshot();
   });
