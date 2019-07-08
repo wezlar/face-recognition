@@ -1,3 +1,5 @@
+import defaultImage from './img/rio.jpg';
+
 // import face profile
 export const JSON_PROFILE = require('./descriptors/bnk48.json');
 export const VIDEO_SIZE = {
@@ -6,7 +8,7 @@ export const VIDEO_SIZE = {
 };
 
 // Import image to test API
-const testImg = require('./img/rio.jpg');
+const testImg = defaultImage;
 
 // Initial State
 export const INIT_STATE = {
