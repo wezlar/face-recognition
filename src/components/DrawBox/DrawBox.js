@@ -22,6 +22,7 @@ export const DrawBox = (props = {}) => {
       return (
         <div key={i}>
           <div
+            data-testid='draw-box'
             style={{
               ...boxStyle,
               height: _H,

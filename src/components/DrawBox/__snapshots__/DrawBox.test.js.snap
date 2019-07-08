@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test DrawBox Test snapshot 1`] = `
+<div>
+  <div
+    data-testid="draw-box"
+    style="position: absolute; border: solid; border-color: blue; height: 100px; width: 200px; transform: translate(300px, 400px);"
+  >
+    <p
+      data-testid="draw-name-box"
+      style="background-color: blue; border: solid; border-color: blue; margin-top: 0px; color: rgb(255, 255, 255); width: 200px; transform: translate(-3px, 100px);"
+    >
+      Test Label 1
+    </p>
+  </div>
+</div>
+`;
