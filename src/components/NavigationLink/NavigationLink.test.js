@@ -5,7 +5,7 @@ import {
   cleanup,
 } from '@testing-library/react';
 // this adds custom jest matchers from jest-dom
-import renderWithRouter from '../../testUtils/renderWithRouter';
+import renderWithRouter from '../../../testUtils/renderWithRouter';
 import NavigationLink from './NavigationLink';
 
 // automatically unmount and cleanup DOM after the test is finished.
