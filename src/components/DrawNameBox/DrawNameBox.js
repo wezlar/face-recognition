@@ -17,6 +17,7 @@ export const DrawNameBox = (props = {}) => {
   
   return (
     <p
+      data-testid='draw-name-box'
       style={{
         ...boxStyle,
         width,
