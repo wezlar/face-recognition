@@ -9,6 +9,7 @@ const style = css`
   background-color: #3939a0;
 
   ul {
+    margin-top: 0;
     list-style: none;
     display: flex;
     padding: 0;
