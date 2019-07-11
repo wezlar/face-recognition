@@ -81,6 +81,7 @@ module.exports = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg|ttf|css)$': '<rootDir>/testUtils/assetsTransformer.js',
+    '@jest-helpers(.*)$': '<rootDir>/testUtils/$1',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
