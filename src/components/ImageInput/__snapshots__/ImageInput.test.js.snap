@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ImageInput Test snapshot 1`] = `
+<div>
+  <input
+    accept=".jpg, .jpeg, .png"
+    id="myFileUpload"
+    type="file"
+  />
+  <div
+    style="position: relative;"
+  >
+    <div
+      style="position: absolute;"
+    >
+      <img
+        alt="imageURL"
+        src="file-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
