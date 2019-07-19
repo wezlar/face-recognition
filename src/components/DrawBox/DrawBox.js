@@ -20,22 +20,21 @@ export const DrawBox = (props = {}) => {
       let _Y = detection.box._y;
 
       return (
-        <div key={i}>
-          <div
-            data-testid='draw-box'
-            style={{
-              ...boxStyle,
-              height: _H,
-              width: _W,
-              transform: `translate(${_X}px, ${_Y}px)`,
-            }}>
-              <DrawNameBox 
-                key={i}
-                match={match} 
-                index={i} 
-                width={_W} 
-                height={_H} />
-            </div>
+        <div
+          key={i}
+          data-testid='draw-box'
+          style={{
+            ...boxStyle,
+            height: _H,
+            width: _W,
+            transform: `translate(${_X}px, ${_Y}px)`,
+          }}>
+            <DrawNameBox 
+              key={i}
+              match={match} 
+              index={i} 
+              width={_W} 
+              height={_H} />
         </div>
       );
     });
