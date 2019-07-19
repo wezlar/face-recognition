@@ -21,3 +21,17 @@ exports[`Test ImageInput Test snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`Test ImageInput Test snapshot 2`] = `
+<div
+  data-testid="draw-box"
+  style="position: absolute; border: solid; border-color: blue; height: 156.0831506280933px; width: 293.60938969101437px; transform: translate(293.60938969101437px, 88.34867537841333px);"
+>
+  <p
+    data-testid="draw-name-box"
+    style="background-color: blue; border: solid; border-color: blue; margin-top: 0px; color: rgb(255, 255, 255); width: 293.60938969101437px; transform: translate(-3px, 156.0831506280933px);"
+  >
+    Rio
+  </p>
+</div>
+`;
