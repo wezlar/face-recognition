@@ -18,7 +18,6 @@ class ImageInput extends Component {
 
   handleImage = async (image = this.state.imageURL) => {
     await getFullFaceDescription(image).then(fullDesc => {
-      console.log({fullDesc});
       if (!!fullDesc) {
         this.setState({
           fullDesc,
@@ -29,6 +28,7 @@ class ImageInput extends Component {
     });
     
     if (!!this.state.descriptors && !!this.state.faceMatcher) {
+      // console.log({'Here': this.state.descriptors});
       let match = await this.state.descriptors.map(descriptor =>
         this.state.faceMatcher.findBestMatch(descriptor)
       );
@@ -62,7 +62,7 @@ class ImageInput extends Component {
   };
 
   render() {
-    const { imageURL, detections, descriptors, match } = this.state;
+    const { imageURL, detections, match } = this.state;
 
     return (
       <div>
