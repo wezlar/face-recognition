@@ -1,14 +1,13 @@
-// __tests__/fetch.js
 import React from 'react';
 import {
   render,
   cleanup,
 } from '@testing-library/react';
-// this adds custom jest matchers from jest-dom
+
 import DrawBox from './DrawBox';
 
-// automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
+
 describe(`Test DrawBox`, () => {
   test(`Test snapshot`, () => {
     const match = [
@@ -31,14 +30,12 @@ describe(`Test DrawBox`, () => {
       },
     ];
 
-    // Arrange
     const { container, getByTestId, debug } = render(
       <DrawBox 
         match={match} 
         detections={detections} />
     );
 
-    // snapshots work great with regular DOM nodes!
     expect(container.firstChild).toMatchSnapshot();
     expect(getByTestId('draw-box').children.length).toBe(1);
     expect(getByTestId('draw-box').style.height).toBe('100px');
