@@ -8,7 +8,6 @@ function App() {
         <p>
           Test app
         </p>
-        {/* <Camera /> */}
       </header>
     </div>
   );
