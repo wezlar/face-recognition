@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.js to be replaced 1`] = `
+<div
+  class="App"
+>
+  <header
+    class="App-header"
+  >
+    <p>
+      Test app
+    </p>
+  </header>
+</div>
+`;

@@ -1,13 +1,19 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './App';
+import React from 'react';
+import {
+  render,
+  cleanup,
+} from '@testing-library/react';
 
-// it('renders without crashing', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<App />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// });
+import App from './App';
 
-test('to be replaced', () => {
-  expect(true).toBe(true);
+afterEach(cleanup);
+
+describe('App.js', () => {
+  test('to be replaced', () => {
+    const { container } = render(<App />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
+
+
