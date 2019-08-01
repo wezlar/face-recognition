@@ -1,14 +1,16 @@
 // __tests__/fetch.js
 import React from 'react';
+import serializer from 'jest-emotion'
 import {
   render,
   cleanup,
 } from '@testing-library/react';
 // this adds custom jest matchers from jest-dom
-import renderWithRouter from '../../testUtils/renderWithRouter';
+import renderWithRouter from '../../../testUtils/renderWithRouter';
 import Navigation from './Navigation';
 
-// automatically unmount and cleanup DOM after the test is finished.
+expect.addSnapshotSerializer(serializer)
+
 afterEach(cleanup);
 
 const mockLinks = [

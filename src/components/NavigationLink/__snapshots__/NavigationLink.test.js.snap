@@ -1,9 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test NavigationLink Test snapshot 1`] = `
+.emotion-0 {
+  background-color: #3939a0;
+  display: block;
+  padding: 20px 30px;
+  color: #fff;
+}
+
+.emotion-0:hover {
+  background-color: #272781;
+}
+
 <li>
   <a
-    class="css-1eswy7-NavigationLink"
+    class="emotion-0"
     href="/home"
   >
     Test label

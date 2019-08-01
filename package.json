@@ -40,6 +40,7 @@
     "file-loader": "^3.0.1",
     "jest": "^24.8.0",
     "jest-dom": "^3.5.0",
+    "jest-emotion": "^10.0.14",
     "raw-loader": "^3.0.0",
     "style-loader": "^0.23.1",
     "stylus-loader": "^3.0.2",
