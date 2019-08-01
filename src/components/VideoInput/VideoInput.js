@@ -5,7 +5,6 @@ import DrawBox from '../DrawBox/DrawBox';
 
 import { JSON_PROFILE, INIT_STATE, VIDEO_SIZE } from '../../constants';
 
-
 const inputSize = 160;
 
 class VideoInput extends Component {
