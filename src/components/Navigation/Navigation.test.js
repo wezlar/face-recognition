@@ -38,4 +38,13 @@ describe(`Test Navigation`, () => {
     // snapshots work great with regular DOM nodes!
     expect(container.firstChild).toMatchSnapshot();
   });
+
+
+  test(`Test snapshot with empty props`, () => {
+    // Arrange
+    const { container, debug } = renderWithRouter(Navigation());
+
+    // snapshots work great with regular DOM nodes!
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });

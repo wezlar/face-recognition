@@ -86,3 +86,43 @@ exports[`Test Navigation Test snapshot 1`] = `
   </ul>
 </div>
 `;
+
+exports[`Test Navigation Test snapshot with empty props 1`] = `
+.emotion-0 {
+  margin-top: 0;
+  padding-left: 0;
+  background-color: #3939a0;
+}
+
+.emotion-0 ul {
+  margin-top: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+}
+
+.emotion-0 {
+  margin-top: 0;
+  padding-left: 0;
+  background-color: #3939a0;
+}
+
+.emotion-0 ul {
+  margin-top: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+}
+
+<div
+  class="emotion-0"
+>
+  <ul />
+</div>
+`;
