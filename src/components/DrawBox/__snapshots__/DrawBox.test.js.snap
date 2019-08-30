@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test DrawBox Test snapshot 1`] = `
+exports[`Test DrawBox Test display 1`] = `
 <div
   data-testid="draw-box"
   style="position: absolute; border: solid; border-color: blue; height: 100px; width: 200px; transform: translate(300px, 400px);"
@@ -13,3 +13,5 @@ exports[`Test DrawBox Test snapshot 1`] = `
   </p>
 </div>
 `;
+
+exports[`Test DrawBox Test without detections 1`] = `null`;

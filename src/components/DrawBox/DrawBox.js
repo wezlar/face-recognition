@@ -8,7 +8,7 @@ const boxStyle = {
   borderColor: 'blue',
 };
 
-export const DrawBox = (props = {}) => {
+const DrawBox = (props = {}) => {
   const { detections, match } = props;
   let drawBox = null;
 
