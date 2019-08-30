@@ -28,7 +28,6 @@ class ImageInput extends Component {
     });
     
     if (!!this.state.descriptors && !!this.state.faceMatcher) {
-      // console.log({'Here': this.state.descriptors});
       let match = await this.state.descriptors.map(descriptor =>
         this.state.faceMatcher.findBestMatch(descriptor)
       );
@@ -66,8 +65,10 @@ class ImageInput extends Component {
 
     return (
       <div>
+        <label htmlFor='file-upload'>Upload file</label>
         <input
-          id='myFileUpload'
+          id='file-upload'
+          data-testid='file-upload'
           type='file'
           onChange={this.handleFileChange}
           accept='.jpg, .jpeg, .png' />
