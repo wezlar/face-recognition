@@ -35,4 +35,10 @@ describe(`Test DrawNameBox`, () => {
     expect(getByTestId('draw-name-box').style.width).toBe('10px');
     expect(getByTestId('draw-name-box').style.transform).toBe('translate(-3px, 10px)');
   });
+
+  test(`Test empty DrawNameBox`, () => {
+    const { container } = render(DrawNameBox())
+
+    expect(container.firstChild).toMatchSnapshot();
+  })
 });
