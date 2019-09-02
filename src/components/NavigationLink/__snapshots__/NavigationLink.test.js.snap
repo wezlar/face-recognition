@@ -21,3 +21,23 @@ exports[`Test NavigationLink Test snapshot 1`] = `
   </a>
 </li>
 `;
+
+exports[`Test NavigationLink Test snapshot with empty props 1`] = `
+.emotion-0 {
+  background-color: #3939a0;
+  display: block;
+  padding: 20px 30px;
+  color: #fff;
+}
+
+.emotion-0:hover {
+  background-color: #272781;
+}
+
+<li>
+  <a
+    class="emotion-0"
+    href="/"
+  />
+</li>
+`;

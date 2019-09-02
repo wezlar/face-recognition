@@ -20,4 +20,12 @@ describe(`Test NavigationLink`, () => {
     // snapshots work great with regular DOM nodes!
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test(`Test snapshot with empty props`, () => {
+    // Arrange
+    const { container, debug } = renderWithRouter(NavigationLink());
+
+    // snapshots work great with regular DOM nodes!
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
