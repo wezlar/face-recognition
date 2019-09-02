@@ -43,6 +43,7 @@ const mediaDevices = {
     },
   ])
 }
+
 Object.defineProperty(window, 'navigator', {
   value: {
     mediaDevices
