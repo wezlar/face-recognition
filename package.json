@@ -6,6 +6,7 @@
     "start": "webpack-dev-server --open",
     "build": "react-scripts build",
     "test": "jest",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "jest --watch",
     "eject": "react-scripts eject",
     "webpack": "webpack"
