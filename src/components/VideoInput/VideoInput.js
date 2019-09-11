@@ -46,14 +46,12 @@ class VideoInput extends Component {
           facingMode: 'none',
         });
       } else if (inputDevice.length < 2) {
-        console.log('Here ' + this._isMounted);
         if (this._isMounted) {
           await this.setState({
             facingMode: 'user',
           });
         }
       } else {
-        console.log('Here ' + this._isMounted);
         if (this._isMounted) {
           await this.setState({
             facingMode: { exact: 'environment' },
