@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Camera from '../src/components/Camera/Camera';
 import VideoInput from '../src/components/VideoInput/VideoInput';
 import ImageInput from '../src/components/ImageInput/ImageInput';
 import Navigation from '../src/components/Navigation/Navigation';
@@ -14,10 +13,6 @@ const links = [
   {
     label: 'Home',
     url: '/',
-  },
-  {
-    label: 'Camera',
-    url: '/camera',
   },
   {
     label: 'Video Input',
