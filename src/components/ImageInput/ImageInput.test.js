@@ -30,6 +30,9 @@ describe(`Test ImageInput`, () => {
     const testing = await waitForElement(() => getByTestId('draw-box'));
     expect(testing).toMatchSnapshot();
     expect(getByTestId('draw-name-box').textContent).toBe(mockFindBestMatch._label);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
   });
   
   test(`Test file upload works`, async () => {
@@ -50,8 +53,12 @@ describe(`Test ImageInput`, () => {
     })
 
     expect(container.firstChild).toMatchSnapshot();
-    expect(getFullFaceDescription).toHaveBeenCalledTimes(1)
-    expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1)
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
+    expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
   })
 
   test(`Test file upload returns no match`, async () => {
@@ -61,7 +68,7 @@ describe(`Test ImageInput`, () => {
       <ImageInput />,
     );
 
-    const input = await waitForElement(() => getByTestId('file-upload'));
+    await waitForElement(() => getByTestId('file-upload'));
     expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
   });
 });
