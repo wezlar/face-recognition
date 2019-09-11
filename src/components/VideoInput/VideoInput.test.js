@@ -1,66 +1,99 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   render,
   cleanup,
+  waitForElement,
 } from '@testing-library/react';
 
 import VideoInput from './VideoInput';
-import { JSON_PROFILE, INIT_STATE, VIDEO_SIZE } from '../../constants';
+import { loadModels, getFullFaceDescription, createMatcher } from '../../api/face';
+import { mediaDevices, multipleCameras } from '../../../testUtils/mediaDevices';
 
 const originalWindow = global.Window;
 global.window = Object.create(window);
-const mediaDevices = {
-  enumerateDevices: jest.fn().mockResolvedValue([
-    {
-      deviceId: 'default',
-      groupId: '93f7124db4f938763012fa70d923a5832e6304d0bb0508c8a9283b6fb3e901fa',
-      kind: 'audioinput',
-      label: '',
-    },
-    {
-      deviceId: '890c048ff7ee9c63ef25e6fe6439c435b029d7e6d9b61e0c4046dffe40993eb4',
-      groupId: '93f7124db4f938763012fa70d923a5832e6304d0bb0508c8a9283b6fb3e901fa',
-      kind: 'audioinput',
-      label: '',
-    },
-    {
-      deviceId: 'a4d796b64c620eb6ac4c6fea8eb68d2a1edf765f9dcfa21a53f963e6ed5332d8',
-      groupId: '23aa31907dfcec8059ab203aa6c0dbea57a5420f1c42fa94efdc5021041ee763',
-      kind: 'videoinput',
-      label: 'FaceTime HD, Camera'
-    },
-    {
-      deviceId: 'default',
-      groupId: '93f7124db4f938763012fa70d923a5832e6304d0bb0508c8a9283b6fb3e901fa',
-      kind: 'audiooutput',
-      label: '',
-    },
-    {
-      deviceId: '827cb2afab96ab5b170edb703fa8acb30da5b14b39f2f302ec5f5b7b562bd74e',
-      groupId: '93f7124db4f938763012fa70d923a5832e6304d0bb0508c8a9283b6fb3e901fa',
-      kind: 'audiooutput',
-      label: '',
-    },
-  ])
-}
-
-Object.defineProperty(window, 'navigator', {
-  value: {
-    mediaDevices
-  }
-});
 
 jest.mock('../../api/face');
-jest.mock('react-webcam');
-
-afterEach(cleanup);
-
-describe.only(`Test VideoInput`, () => {
-  const { container, debug } = render(<VideoInput />);
-  // debug(container.firstChild)
-  test(`Another test`, () => {
+beforeEach(() => {
+  Object.defineProperty(window, 'navigator', {
+    value: {
+      mediaDevices
+    }
+  });
+})
+afterEach(() => {
+  jest.useRealTimers();
+  jest.restoreAllMocks();
+  global.window = originalWindow;
+  cleanup();
+})
+describe(`Test VideoInput`, () => {
+  test(`Test VideoInput Basics`, async () => {
+    const { container, getByTestId } = render(<VideoInput />);
+    expect(container.firstChild).toMatchSnapshot();
     
+    const webcam = await waitForElement(() => getByTestId('webcam'));
+    expect(webcam).toMatchSnapshot();
+    const drawbox = await waitForElement(() => getByTestId('draw-box'));
+    expect(drawbox).toMatchSnapshot();
+
+    expect(window.navigator.mediaDevices.enumerateDevices).toHaveBeenCalledTimes(1);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
+  });
+
+  test(`The setInterval should fire`, async () => {
+    jest.useFakeTimers();
+    
+    const { container, getByTestId } = render(<VideoInput />);
+    expect(container.firstChild).toMatchSnapshot();
+    
+    const webcam = await waitForElement(() => getByTestId('webcam'));
+    jest.advanceTimersByTime(2000);
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(2);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
+    expect(webcam).toMatchSnapshot();
+  });
+
+  test(`Stops interval on unmount`, async () => {
+    jest.useFakeTimers();
+    
+    const { unmount } = render(<VideoInput />);
+    unmount();
+    jest.runOnlyPendingTimers();
+    expect(setInterval).toHaveBeenCalledTimes(0);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(0);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
+  });
+
+  test(`Test difference multiple cameras`, async () => {
+    window.navigator.mediaDevices = multipleCameras;
+
+    const { getByTestId } = render(<VideoInput />);
+    const webcam = await waitForElement(() => getByTestId('webcam'));
+    expect(window.navigator.mediaDevices.enumerateDevices).toHaveBeenCalledTimes(1);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
+  });
+
+  test(`Without any webcams`, async () => {
+    window.navigator.mediaDevices.enumerateDevices = jest.fn().mockResolvedValue([]);
+
+    const { container } = render(<VideoInput />);
+    expect(container.firstChild).toMatchSnapshot();
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(0);
+  });
+
+  test(`Test getFullFaceDescription when returns empty fullDesc`, async () => {
+    window.navigator.mediaDevices = mediaDevices;
+    getFullFaceDescription.mockResolvedValue();
+    const { getByTestId } = render(<VideoInput />);
+
+    await waitForElement(() => getByTestId('webcam'));
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
   });
 });
-
-global.window = originalWindow;

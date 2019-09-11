@@ -8,6 +8,8 @@ import { JSON_PROFILE, INIT_STATE, VIDEO_SIZE } from '../../constants';
 const inputSize = 160;
 
 class VideoInput extends Component {
+  _isMounted = false;
+
   constructor (props) {
     super(props);
     this.webcam = React.createRef();
@@ -16,64 +18,85 @@ class VideoInput extends Component {
 
   componentWillMount = async () => {
     await loadModels();
-    this.setState({ faceMatcher: await createMatcher(JSON_PROFILE) });
     this.setInputDevice();
   };
 
+  async componentDidMount () {
+    this._isMounted = true;
+    const matchedProfile = await createMatcher(JSON_PROFILE);
+    if (this._isMounted) {
+      this.setState({ faceMatcher: matchedProfile });
+    }
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.interval);
+    this._isMounted = false;
+  };
+
   setInputDevice = () => {
+    if (!this._isMounted) return;
     navigator.mediaDevices.enumerateDevices().then(async devices => {
       let inputDevice = await devices.filter(
         device => device.kind === 'videoinput'
       );
       
-      if (inputDevice.length < 2) {
+      if (!inputDevice.length) {
         await this.setState({
-          facingMode: 'user',
+          facingMode: 'none',
         });
+      } else if (inputDevice.length < 2) {
+        console.log('Here ' + this._isMounted);
+        if (this._isMounted) {
+          await this.setState({
+            facingMode: 'user',
+          });
+        }
       } else {
-        await this.setState({
-          facingMode: { exact: 'environment' },
-        });
+        console.log('Here ' + this._isMounted);
+        if (this._isMounted) {
+          await this.setState({
+            facingMode: { exact: 'environment' },
+          });
+        }
       }
       this.startCapture();
     });
   };
 
   startCapture = () => {
-    this.interval = setInterval(() => {
+    if (!!this.webcam.current) {
       this.capture();
-    }, 1500);
-  };
-
-  componentWillUnmount () {
-    clearInterval(this.interval);
+      this.interval = setInterval(() => {
+        this.capture();
+      }, 1500);
+    }
   };
 
   capture = async () => {
-    if (!!this.webcam.current) {
-      await getFullFaceDescription(
-        this.webcam.current.getScreenshot(),
-        inputSize
-      ).then(fullDesc => {
-        if (!!fullDesc) {
-          this.setState({
-            detections: fullDesc.map(fd => fd.detection),
-            descriptors: fullDesc.map(fd => fd.descriptor),
-          });
-        }
-      });
-
-      if (!!this.state.descriptors && !!this.state.faceMatcher) {
-        let match = await this.state.descriptors.map(descriptor => {
-          return this.state.faceMatcher.findBestMatch(descriptor);
+    if (!this.webcam.current) return
+    await getFullFaceDescription(
+      this.webcam.current.getScreenshot(),
+      inputSize
+    ).then(fullDesc => {
+      if (!!fullDesc) {
+        this.setState({
+          detections: fullDesc.map(fd => fd.detection),
+          descriptors: fullDesc.map(fd => fd.descriptor),
         });
-        this.setState({ match });
       }
+    });
+
+    if (!!this.state.descriptors && !!this.state.faceMatcher) {
+      let match = await this.state.descriptors.map(descriptor => {
+        return this.state.faceMatcher.findBestMatch(descriptor);
+      });
+      this.setState({ match });
     }
   };
 
   render () {
-    const { detections, match = {}, facingMode } = this.state;
+    const { detections, match, facingMode } = this.state;
     let videoConstraints = null;
     let camera = '';
     
@@ -83,7 +106,9 @@ class VideoInput extends Component {
         height: VIDEO_SIZE.HEIGHT,
         facingMode,
       };
-      if (facingMode === 'user') {
+      if (facingMode === 'none') {
+        camera = 'none';
+      } else if (facingMode === 'user') {
         camera = 'Front';
       } else {
         camera = 'Back';
@@ -105,8 +130,8 @@ class VideoInput extends Component {
             height: VIDEO_SIZE.HEIGHT,
           }} >
           <div style={{ position: 'relative', width: VIDEO_SIZE.WIDTH }}>
-            {!!videoConstraints ? (
-              <div style={{ position: 'absolute' }}>
+            {!!videoConstraints && camera !== 'none' ? (
+              <div data-testid='webcam' style={{ position: 'absolute' }}>
                 <Webcam
                   audio={false}
                   width={VIDEO_SIZE.WIDTH}
@@ -115,7 +140,7 @@ class VideoInput extends Component {
                   screenshotFormat='image/jpeg'
                   videoConstraints={videoConstraints} />
               </div>
-            ) : null}
+            ) : <div data-testid='webcam' style={{ position: 'absolute' }}>No camera</div> }
             <DrawBox key={1} detections={detections} match={match} />
           </div>
         </div>

@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test VideoInput Test VideoInput Basics 1`] = `
+<div
+  class="camera"
+  style="display: flex; flex-direction: column; align-items: center;"
+>
+  <p>
+    Camera: 
+    
+  </p>
+  <div
+    style="width: 520px; height: 420px;"
+  >
+    <div
+      style="position: relative; width: 520px;"
+    >
+      <div
+        data-testid="webcam"
+        style="position: absolute;"
+      >
+        No camera
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test VideoInput Test VideoInput Basics 2`] = `
+<div
+  data-testid="webcam"
+  style="position: absolute;"
+>
+  <video
+    autoplay=""
+    class=""
+    height="420"
+    playsinline=""
+    width="520"
+  />
+</div>
+`;
+
+exports[`Test VideoInput Test VideoInput Basics 3`] = `
+<div
+  data-testid="draw-box"
+  style="position: absolute; border: solid; border-color: blue; height: 156.0831506280933px; width: 293.60938969101437px; transform: translate(293.60938969101437px, 88.34867537841333px);"
+>
+  <p
+    data-testid="draw-name-box"
+    style="background-color: blue; border: solid; border-color: blue; margin-top: 0px; color: rgb(255, 255, 255); width: 293.60938969101437px; transform: translate(-3px, 156.0831506280933px);"
+  >
+    Rio
+  </p>
+</div>
+`;
+
+exports[`Test VideoInput The setInterval should fire 1`] = `
+<div
+  class="camera"
+  style="display: flex; flex-direction: column; align-items: center;"
+>
+  <p>
+    Camera: 
+    
+  </p>
+  <div
+    style="width: 520px; height: 420px;"
+  >
+    <div
+      style="position: relative; width: 520px;"
+    >
+      <div
+        data-testid="webcam"
+        style="position: absolute;"
+      >
+        No camera
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test VideoInput The setInterval should fire 2`] = `
+<div
+  data-testid="webcam"
+  style="position: absolute;"
+>
+  <video
+    autoplay=""
+    class=""
+    height="420"
+    playsinline=""
+    width="520"
+  />
+</div>
+`;
+
+exports[`Test VideoInput Without any webcams 1`] = `
+<div
+  class="camera"
+  style="display: flex; flex-direction: column; align-items: center;"
+>
+  <p>
+    Camera: 
+    
+  </p>
+  <div
+    style="width: 520px; height: 420px;"
+  >
+    <div
+      style="position: relative; width: 520px;"
+    >
+      <div
+        data-testid="webcam"
+        style="position: absolute;"
+      >
+        No camera
+      </div>
+    </div>
+  </div>
+</div>
+`;
