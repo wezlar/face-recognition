@@ -7,8 +7,6 @@ import VideoInput from '../src/components/VideoInput/VideoInput';
 import ImageInput from '../src/components/ImageInput/ImageInput';
 import Navigation from '../src/components/Navigation/Navigation';
 
-import * as serviceWorker from './serviceWorker';
-
 const links = [
   {
     label: 'Home',
@@ -36,8 +34,3 @@ const routing = (
 );
 
 ReactDOM.render(routing, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
