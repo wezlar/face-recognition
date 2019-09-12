@@ -9,8 +9,6 @@ import {
 import renderWithRouter from '../../../testUtils/renderWithRouter';
 import Navigation from './Navigation';
 
-expect.addSnapshotSerializer(serializer)
-
 afterEach(cleanup);
 
 const mockLinks = [
