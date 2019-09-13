@@ -1,6 +1,6 @@
 // __tests__/fetch.js
 import React from 'react';
-import serializer from 'jest-emotion'
+import serializer from 'jest-emotion';
 import {
   render,
   cleanup,
@@ -26,8 +26,8 @@ const mockLinks = [
   },
 ];
 
-describe(`Test Navigation`, () => {
-  test(`Test snapshot`, () => {
+describe('Test Navigation', () => {
+  test('Test snapshot', () => {
     // Arrange
     const { container, debug } = renderWithRouter(
       <Navigation links={mockLinks} />,
@@ -38,7 +38,7 @@ describe(`Test Navigation`, () => {
   });
 
 
-  test(`Test snapshot with empty props`, () => {
+  test('Test snapshot with empty props', () => {
     // Arrange
     const { container, debug } = renderWithRouter(Navigation());
 

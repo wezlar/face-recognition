@@ -8,10 +8,10 @@ import {
 
 afterEach(cleanup);
 
-describe(`Test ImageInput`, () => {
-  test.skip(`Test snapshot`, async () => {
+describe('Test ImageInput', () => {
+  test.skip('Test snapshot', async () => {
     const { container, debug } = render(index);
-    debug()
+    debug();
     expect(container.firstChild).toMatchSnapshot();
   });
 });

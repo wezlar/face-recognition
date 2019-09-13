@@ -10,8 +10,8 @@ import NavigationLink from './NavigationLink';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
-describe(`Test NavigationLink`, () => {
-  test(`Test snapshot`, () => {
+describe('Test NavigationLink', () => {
+  test('Test snapshot', () => {
     // Arrange
     const { container, debug } = renderWithRouter(
       <NavigationLink label='Test label' url={'/home'} />,
@@ -21,7 +21,7 @@ describe(`Test NavigationLink`, () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test(`Test snapshot with empty props`, () => {
+  test('Test snapshot with empty props', () => {
     // Arrange
     const { container, debug } = renderWithRouter(NavigationLink());
 

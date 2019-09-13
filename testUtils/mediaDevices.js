@@ -10,7 +10,7 @@ export const mediaDevices = {
       deviceId: 'a4d796b64c620eb6ac4c6fea8eb68d2a1edf765f9dcfa21a53f963e6ed5332d8',
       groupId: '23aa31907dfcec8059ab203aa6c0dbea57a5420f1c42fa94efdc5021041ee763',
       kind: 'videoinput',
-      label: 'FaceTime HD, Camera'
+      label: 'FaceTime HD, Camera',
     },
     {
       deviceId: 'default',
@@ -18,7 +18,7 @@ export const mediaDevices = {
       kind: 'audiooutput',
       label: '',
     },
-  ])
+  ]),
 };
 
 export const multipleCameras = {
@@ -27,7 +27,7 @@ export const multipleCameras = {
       deviceId: 'a4d796b64c620eb6ac4c6fea8eb68d2a1edf765f9dcfa21a53f963e6ed5332d8',
       groupId: '23aa31907dfcec8059ab203aa6c0dbea57a5420f1c42fa94efdc5021041ee763',
       kind: 'videoinput',
-      label: 'FaceTime HD, Camera'
+      label: 'FaceTime HD, Camera',
     },
     {
       deviceId: 'default',
@@ -35,5 +35,5 @@ export const multipleCameras = {
       kind: 'videoinput',
       label: 'Extra test camera',
     },
-  ])
-}
+  ]),
+};

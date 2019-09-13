@@ -14,13 +14,13 @@ jest.mock('../../api/face');
 const originalWindow = global.Window;
 global.URL = Object.create(URL);
 URL = Object.defineProperty(URL, 'createObjectURL', {
-  value: jest.fn()
-})
+  value: jest.fn(),
+});
 
 afterEach(cleanup);
-describe(`Test ImageInput`, () => {
+describe('Test ImageInput', () => {
 
-  test(`Test snapshot`, async () => {
+  test('Test snapshot', async () => {
     const { container, debug, getByTestId } = render(
       <ImageInput />,
     );
@@ -35,7 +35,7 @@ describe(`Test ImageInput`, () => {
     expect(createMatcher).toHaveBeenCalledTimes(1);
   });
   
-  test(`Test file upload works`, async () => {
+  test('Test file upload works', async () => {
     const { container, getByTestId } = render(
       <ImageInput />,
     );
@@ -47,10 +47,10 @@ describe(`Test ImageInput`, () => {
     fireEvent.change(input, {
       target: {
         files: [
-          mockImage
-        ]
-      }
-    })
+          mockImage,
+        ],
+      },
+    });
 
     expect(container.firstChild).toMatchSnapshot();
     expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
@@ -59,9 +59,9 @@ describe(`Test ImageInput`, () => {
     expect(loadModels).toHaveBeenCalledTimes(1);
     expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
     expect(createMatcher).toHaveBeenCalledTimes(1);
-  })
+  });
 
-  test(`Test file upload returns no match`, async () => {
+  test('Test file upload returns no match', async () => {
     getFullFaceDescription.mockResolvedValue();
 
     const { getByTestId } = render(

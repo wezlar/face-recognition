@@ -72,7 +72,7 @@ class VideoInput extends Component {
   };
 
   capture = async () => {
-    if (!this.webcam.current) return
+    if (!this.webcam.current) return;
     await getFullFaceDescription(
       this.webcam.current.getScreenshot(),
       inputSize

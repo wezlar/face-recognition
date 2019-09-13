@@ -9,15 +9,15 @@ import DrawNameBox from './DrawNameBox';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
-describe(`Test DrawNameBox`, () => {
-  test(`Test snapshot`, () => {
+describe('Test DrawNameBox', () => {
+  test('Test snapshot', () => {
     const match = [
       {
         _label: 'Test Label 1',
       },
       {
         _label: 'Test Label 2',
-      }
+      },
     ];
     
     // Arrange
@@ -36,9 +36,9 @@ describe(`Test DrawNameBox`, () => {
     expect(getByTestId('draw-name-box').style.transform).toBe('translate(-3px, 10px)');
   });
 
-  test(`Test empty DrawNameBox`, () => {
-    const { container } = render(DrawNameBox())
+  test('Test empty DrawNameBox', () => {
+    const { container } = render(DrawNameBox());
 
     expect(container.firstChild).toMatchSnapshot();
-  })
+  });
 });

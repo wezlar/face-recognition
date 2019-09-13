@@ -8,23 +8,23 @@ import DrawBox from './DrawBox';
 
 afterEach(cleanup);
 
-describe(`Test DrawBox`, () => {
+describe('Test DrawBox', () => {
   const match = [
     {
       _label: 'Test Label 1',
     },
     {
       _label: 'Test Label 2',
-    }
+    },
   ];
 
-  test(`Test without detections`, () => {
+  test('Test without detections', () => {
     const { container } = render(DrawBox());
 
     expect(container.firstChild).toMatchSnapshot();
-  })
+  });
 
-  test(`Test display`, () => {
+  test('Test display', () => {
     const detections = [
       {
         box: {

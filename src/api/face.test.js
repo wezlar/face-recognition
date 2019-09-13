@@ -19,36 +19,36 @@ jest.mock('face-api.js', () => {
       return {
         withFaceLandmarks: jest.fn(img => {
           return {
-            withFaceDescriptors: jest.fn(img => img).mockResolvedValue('fullDescImage')
-          }
+            withFaceDescriptors: jest.fn(img => img).mockResolvedValue('fullDescImage'),
+          };
         }),
-      }
+      };
     }),
-  }
+  };
 });
 
 afterEach(() => {
   jest.restoreAllMocks();
-  cleanup()
+  cleanup();
 });
 
-describe(`Test face api`, () => {
-  test(`Check loadModels calls everything`, async () => {
+describe('Test face api', () => {
+  test('Check loadModels calls everything', async () => {
     await loadModels();
     expect(faceapi.loadTinyFaceDetectorModel).toHaveBeenCalledTimes(1);
     expect(faceapi.loadFaceLandmarkTinyModel).toHaveBeenCalledTimes(1);
     expect(faceapi.loadFaceRecognitionModel).toHaveBeenCalledTimes(1);
   });
 
-  test(`Test getFullFaceDescription returns expected`, async () => {
+  test('Test getFullFaceDescription returns expected', async () => {
     const inputSize = 160;
     const fullDesc = await getFullFaceDescription(btoa('mockScreenShot'), inputSize);
     expect(fullDesc).toEqual('fullDescImage');
     expect(faceapi.fetchImage).toHaveBeenCalledTimes(1);
     expect(faceapi.detectAllFaces).toHaveBeenCalledTimes(1);
-  })
+  });
 
-  test(`Test createMatcher calls and returns expected`, () => {
+  test('Test createMatcher calls and returns expected', () => {
 
   });
 });

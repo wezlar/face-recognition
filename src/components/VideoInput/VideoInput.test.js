@@ -16,18 +16,20 @@ jest.mock('../../api/face');
 beforeEach(() => {
   Object.defineProperty(window, 'navigator', {
     value: {
-      mediaDevices
-    }
+      mediaDevices,
+    },
   });
-})
+});
+
 afterEach(() => {
   jest.useRealTimers();
   jest.restoreAllMocks();
   global.window = originalWindow;
   cleanup();
-})
-describe(`Test VideoInput`, () => {
-  test(`Test VideoInput Basics`, async () => {
+});
+
+describe('Test VideoInput', () => {
+  test('Test VideoInput Basics', async () => {
     const { container, getByTestId } = render(<VideoInput />);
     expect(container.firstChild).toMatchSnapshot();
     
@@ -42,7 +44,7 @@ describe(`Test VideoInput`, () => {
     expect(createMatcher).toHaveBeenCalledTimes(1);
   });
 
-  test(`The setInterval should fire`, async () => {
+  test('The setInterval should fire', async () => {
     jest.useFakeTimers();
     
     const { container, getByTestId } = render(<VideoInput />);
@@ -57,7 +59,7 @@ describe(`Test VideoInput`, () => {
     expect(webcam).toMatchSnapshot();
   });
 
-  test(`Stops interval on unmount`, async () => {
+  test('Stops interval on unmount', async () => {
     jest.useFakeTimers();
     
     const { unmount } = render(<VideoInput />);
@@ -69,7 +71,7 @@ describe(`Test VideoInput`, () => {
     expect(createMatcher).toHaveBeenCalledTimes(1);
   });
 
-  test(`Test difference multiple cameras`, async () => {
+  test('Test difference multiple cameras', async () => {
     window.navigator.mediaDevices = multipleCameras;
 
     const { getByTestId } = render(<VideoInput />);
@@ -80,7 +82,7 @@ describe(`Test VideoInput`, () => {
     expect(createMatcher).toHaveBeenCalledTimes(1);
   });
 
-  test(`Without any webcams`, async () => {
+  test('Without any webcams', async () => {
     window.navigator.mediaDevices.enumerateDevices = jest.fn().mockResolvedValue([]);
 
     const { container } = render(<VideoInput />);
@@ -88,7 +90,7 @@ describe(`Test VideoInput`, () => {
     expect(getFullFaceDescription).toHaveBeenCalledTimes(0);
   });
 
-  test(`Test getFullFaceDescription when returns empty fullDesc`, async () => {
+  test('Test getFullFaceDescription when returns empty fullDesc', async () => {
     window.navigator.mediaDevices = mediaDevices;
     getFullFaceDescription.mockResolvedValue();
     const { getByTestId } = render(<VideoInput />);
