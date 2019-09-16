@@ -1,17 +1,23 @@
+import React, { Component } from 'react';
 import {
-  render,
   cleanup,
-  waitForElement,
 } from '@testing-library/react';
+import ReactDOM from 'react-dom';
+import App from './App';
+jest.mock('./components/VideoInput/VideoInput', () => 'VideoInput');
+jest.mock('./components/ImageInput/ImageInput', () => 'ImageInput');
+jest.mock('./components/Navigation/Navigation', () => 'VideoInput');
 
-// import index from './index';
-
+jest.mock('react-dom', () => ({ render: jest.fn() }));
 afterEach(cleanup);
 
-describe('Test ImageInput', () => {
-  test.skip('Test snapshot', async () => {
-    const { container, debug } = render(index);
-    debug();
-    expect(container.firstChild).toMatchSnapshot();
+describe('Application root', () => {
+  it('should render without crashing', () => {
+    const div = document.createElement('div');
+    div.id = 'root';
+    document.body.appendChild(div);
+    require('./index.js');
+    expect(ReactDOM.render).toHaveBeenCalled();
+    expect(ReactDOM.render).toMatchSnapshot();
   });
 });

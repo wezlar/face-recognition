@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application root should render without crashing 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      <BrowserRouter>
+        <div>
+          <VideoInput
+            links={
+              Array [
+                Object {
+                  "label": "Home",
+                  "url": "/",
+                },
+                Object {
+                  "label": "Video Input",
+                  "url": "/video",
+                },
+                Object {
+                  "label": "Image",
+                  "url": "/image",
+                },
+              ]
+            }
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/"
+          />
+          <Route
+            component="VideoInput"
+            path="/video"
+          />
+          <Route
+            component="ImageInput"
+            path="/image"
+          />
+        </div>
+      </BrowserRouter>,
+      <div
+        id="root"
+      />,
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
