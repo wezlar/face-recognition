@@ -18,11 +18,11 @@ class VideoInput extends Component {
 
   componentWillMount = async () => {
     await loadModels();
-    this.setInputDevice();
   };
-
+  
   async componentDidMount () {
     this._isMounted = true;
+    this.setInputDevice();
     const matchedProfile = await createMatcher(JSON_PROFILE);
     if (this._isMounted) {
       this.setState({ faceMatcher: matchedProfile });
@@ -35,7 +35,6 @@ class VideoInput extends Component {
   };
 
   setInputDevice = () => {
-    if (!this._isMounted) return;
     navigator.mediaDevices.enumerateDevices().then(async devices => {
       let inputDevice = await devices.filter(
         device => device.kind === 'videoinput'

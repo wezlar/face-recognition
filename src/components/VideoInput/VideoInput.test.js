@@ -71,11 +71,24 @@ describe('Test VideoInput', () => {
     expect(createMatcher).toHaveBeenCalledTimes(1);
   });
 
+  test('Stops interval on unmount with multiple cameras', async () => {
+    jest.useFakeTimers();
+    window.navigator.mediaDevices = multipleCameras;
+    
+    const { unmount } = render(<VideoInput />);
+    unmount();
+    jest.runOnlyPendingTimers();
+    expect(setInterval).toHaveBeenCalledTimes(0);
+    expect(loadModels).toHaveBeenCalledTimes(1);
+    expect(getFullFaceDescription).toHaveBeenCalledTimes(0);
+    expect(createMatcher).toHaveBeenCalledTimes(1);
+  });
+
   test('Test difference multiple cameras', async () => {
     window.navigator.mediaDevices = multipleCameras;
 
     const { getByTestId } = render(<VideoInput />);
-    const webcam = await waitForElement(() => getByTestId('webcam'));
+    await waitForElement(() => getByTestId('webcam'));
     expect(window.navigator.mediaDevices.enumerateDevices).toHaveBeenCalledTimes(1);
     expect(loadModels).toHaveBeenCalledTimes(1);
     expect(getFullFaceDescription).toHaveBeenCalledTimes(1);
