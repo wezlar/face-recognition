@@ -12,7 +12,7 @@ jest.mock('react-dom', () => ({ render: jest.fn() }));
 afterEach(cleanup);
 
 describe('Application root', () => {
-  it('should render without crashing', () => {
+  test('should render without crashing', () => {
     const div = document.createElement('div');
     div.id = 'root';
     document.body.appendChild(div);
