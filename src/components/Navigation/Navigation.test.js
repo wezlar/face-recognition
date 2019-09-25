@@ -1,6 +1,5 @@
 // __tests__/fetch.js
 import React from 'react';
-import serializer from 'jest-emotion';
 import {
   render,
   cleanup,
@@ -29,7 +28,7 @@ const mockLinks = [
 describe('Test Navigation', () => {
   test('Test snapshot', () => {
     // Arrange
-    const { container, debug } = renderWithRouter(
+    const { container } = renderWithRouter(
       <Navigation links={mockLinks} />,
     );
 
@@ -40,7 +39,7 @@ describe('Test Navigation', () => {
 
   test('Test snapshot with empty props', () => {
     // Arrange
-    const { container, debug } = renderWithRouter(Navigation());
+    const { container } = renderWithRouter(Navigation());
 
     // snapshots work great with regular DOM nodes!
     expect(container.firstChild).toMatchSnapshot();
